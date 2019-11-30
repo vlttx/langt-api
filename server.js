@@ -9,6 +9,26 @@ app.get("/api/v1/subjects", (req, res) => {
   res.status(200).json({ success: true, msg: "Show all subjects" });
 });
 
+app.post("/api/v1/subjects", (req, res) => {
+  res.status(200).json({ success: true, msg: "Create new subject" });
+});
+
+app.put("/api/v1/subjects/:id", (req, res) => {
+  res
+    .status(200)
+    .json({ success: true, msg: `Update subject ${req.params.id}` });
+});
+
+app.get("/api/v1/subjects/:id", (req, res) => {
+  res.status(200).json({ success: true, msg: `Get subject ${req.params.id}` });
+});
+
+app.delete("/api/v1/subjects/:id", (req, res) => {
+  res
+    .status(200)
+    .json({ success: true, msg: `Delete subject ${req.params.id}` });
+});
+
 //in order to start a server we need to listen to a port
 const PORT = process.env.PORT || 5000;
 
