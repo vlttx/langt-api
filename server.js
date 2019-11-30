@@ -1,6 +1,6 @@
 const express = require("express");
 const dotenv = require("dotenv");
-const logger = require("./middleware/logger");
+const morgan = require("morgan");
 //Route files
 
 const subjects = require("./routes/subjects");
@@ -8,8 +8,10 @@ const subjects = require("./routes/subjects");
 dotenv.config({ path: "./config/config.env" });
 
 const app = express();
-
-app.use(logger);
+//dev logging middleware
+if (process.env.NODE_ENV === "development") {
+  app.use(morgan("dev"));
+}
 //Mount routers
 //add the url and connect it to subjects file that was brought in above
 app.use("/api/v1/subjects", subjects);
