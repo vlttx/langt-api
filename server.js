@@ -1,33 +1,16 @@
 const express = require("express");
 const dotenv = require("dotenv");
+//Route files
+
+const subjects = require("./routes/subjects");
 
 dotenv.config({ path: "./config/config.env" });
 
 const app = express();
 
-app.get("/api/v1/subjects", (req, res) => {
-  res.status(200).json({ success: true, msg: "Show all subjects" });
-});
-
-app.post("/api/v1/subjects", (req, res) => {
-  res.status(200).json({ success: true, msg: "Create new subject" });
-});
-
-app.put("/api/v1/subjects/:id", (req, res) => {
-  res
-    .status(200)
-    .json({ success: true, msg: `Update subject ${req.params.id}` });
-});
-
-app.get("/api/v1/subjects/:id", (req, res) => {
-  res.status(200).json({ success: true, msg: `Get subject ${req.params.id}` });
-});
-
-app.delete("/api/v1/subjects/:id", (req, res) => {
-  res
-    .status(200)
-    .json({ success: true, msg: `Delete subject ${req.params.id}` });
-});
+//Mount routers
+//add the url and connect it to subjects file that was brought in above
+app.use("/api/v1/subjects", subjects);
 
 //in order to start a server we need to listen to a port
 const PORT = process.env.PORT || 5000;
